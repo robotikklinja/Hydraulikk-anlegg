@@ -1,0 +1,10 @@
+Need to use the looping play button in animation for lamps to work properly (they are not working in simulation)
+
+Ideas:
+
+Set up scenario with pump etc and some buttons. One to hold a workpiece in a clamp (from the side) and one to press the work piece from above. Put in example valves so they can test it.  The challange is to replace the valves with others so that it fails safely. Of all signals are off (emergency stop / power loss) the clamp needs to be "loose" or retract (spring) ie free to move and the press needs to be locked in place, so it doesn't decend violently, possibly trapping somebodys finger etc.
+
+(need to calibrate internal volumes to not matcH!)
+
+Other ideas:
+Digger arm, needs to lock in place when not driven in either direction, or will "collapse" from own weight.
