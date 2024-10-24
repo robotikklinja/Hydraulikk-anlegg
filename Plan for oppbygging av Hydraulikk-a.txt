@@ -1,0 +1,24 @@
+Plan for oppbygging av Hydraulikk-anlegg
+
+
+Uke 43:
+lage denne planen 
+tegne pc-schematic for skap
+
+Uke 44:
+velge skap 
+rydde skap 
+finne alle komponentene 
+sette in alle komponentene 
+sette in alle ledningene 
+gruble over hvilke sensorer jeg har lyst på 
+
+Uke 45:
+prøve programmering
+programmeringen funker ikke
+feil søk
+løs feilen
+repeat
+
+Uke 46:
+se hva mer som jeg trenger å gjøre
