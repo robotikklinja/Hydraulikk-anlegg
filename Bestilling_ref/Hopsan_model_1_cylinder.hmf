@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hopsanmodelfile hopsancoreversion="2.20.0.20220711.1354" hmfversion="0.4" hopsanguiversion="2.20.0.20220711.1354">
+  <requirements>
+    <componentlibrary>
+      <id>59c07d33-554f-49d3-a163-a928823d4380</id>
+      <name>HopsanDefaultComponentLibrary</name>
+    </componentlibrary>
+  </requirements>
+  <system cqstype="UndefinedCQSType" disabled="false" locked="false" subtypename="" typename="Subsystem" name="Hopsan_model_1_cylinder">
+    <simulationtime start="0" inherit_timestep="true" timestep="0.001" stop="10"/>
+    <simulationlogsettings starttime="0" numsamples="2048"/>
+    <parameters/>
+    <aliases>
+      <alias name="PumpPressure" type="variable">
+        <fullname>Q_type_Fixed_Displacement_Pump#P2#Pressure</fullname>
+      </alias>
+    </aliases>
+    <hopsangui alwaysvisible="0">
+      <pose x="0" y="0" a="0" flipped="false"/>
+      <nametext visible="0" position="0"/>
+      <animation disabled="false" hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+      <info>
+        <author>Fluid &amp; Mechatronic Systems (Flumes)</author>
+        <email>petter.krus@liu.se</email>
+        <affiliation>Linköping University</affiliation>
+        <description>Example model for how to model and open center system in Hopsan.</description>
+      </info>
+      <viewport x="2626.59" zoom="0.487133" y="2311.48"/>
+      <ports hidden="1"/>
+      <names hidden="1"/>
+      <graphics type="user"/>
+      <hopsanobjectappearance version="0.3">
+        <modelobject displayname="Hopsan_model_1_cylinder" typename="Subsystem">
+          <icons>
+            <icon path="subsystemDefault.svg" type="defaultmissing"/>
+          </icons>
+          <ports/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+        </modelobject>
+      </hopsanobjectappearance>
+      <optimization>
+        <settings>
+          <iterations>100</iterations>
+          <nsearchp>8</nsearchp>
+          <refcoeff>1.3</refcoeff>
+          <randfac>0.3</randfac>
+          <forgfac>0</forgfac>
+          <partol>0.0001</partol>
+          <plot>true</plot>
+          <savecsv>false</savecsv>
+          <finaleval>true</finaleval>
+          <logpar>false</logpar>
+        </settings>
+        <parameters/>
+        <objectives/>
+      </optimization>
+      <senstivitityanalysis>
+        <settings>
+          <iterations>100</iterations>
+          <distribution>uniform</distribution>
+        </settings>
+        <parameters/>
+        <plotvariables/>
+      </senstivitityanalysis>
+    </hopsangui>
+    <objects>
+      <component cqstype="S" disabled="false" locked="false" subtypename="" typename="SignalSubtract" name="Subtract">
+        <parameters>
+          <parameter value="0" name="in1#Value" type="double" unit=""/>
+          <parameter value="0" name="in2#Value" type="double" unit=""/>
+        </parameters>
+        <ports>
+          <port porttype="ReadPortType" name="in1" nodetype="NodeSignal"/>
+          <port porttype="ReadPortType" name="in2" nodetype="NodeSignal"/>
+          <port porttype="WritePortType" name="out" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2314.071856" y="2317.695108" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Subtract" typename="SignalSubtract">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="S" disabled="false" locked="false" subtypename="SignalAnimationMomentarySwitch" typename="SignalAnimationSwitch" name="Extrend_cylinder_signal">
+        <parameters/>
+        <ports>
+          <port porttype="WritePortType" name="out" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2218.402934" y="2317.695108" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="out" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="0.000000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+              <switchable momentary="true" dataname="Value" hideicon="true" port="out" offvalue="0.000000" onvalue="1.000000"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Extrend_cylinder_signal" subtypename="SignalAnimationMomentarySwitch" typename="SignalAnimationSwitch">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="HydraulicTankC" name="C_type_Tank_3">
+        <parameters>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="0" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+          <parameter value="100000" name="p" type="double" unit="Pa"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeHydraulic"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2678.180312" y="2591.943543" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="C_type_Tank_3" typename="HydraulicTankC">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="S" disabled="false" locked="false" subtypename="SignalAnimationMomentarySwitch" typename="SignalAnimationSwitch" name="Retract_cylinder_signal">
+        <parameters/>
+        <ports>
+          <port porttype="WritePortType" name="out" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2223.327649" y="2253.105779" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="out" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="0.000000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+              <switchable momentary="true" dataname="Value" hideicon="true" port="out" offvalue="0.000000" onvalue="1.000000"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Retract_cylinder_signal" subtypename="SignalAnimationMomentarySwitch" typename="SignalAnimationSwitch">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="HydraulicVolumeMultiPort" name="Hydraulic_Volume_Multi_Port_2">
+        <parameters>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="0" name="P1#Pressure" type="double" unit="Pa"/>
+          <parameter value="0" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="0" name="P1#WaveVariable" type="double" unit="Pa"/>
+          <parameter value="0" name="P1#CharImpedance" type="double" unit="Pa s/m^3"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+          <parameter value="2e+007" name="P_high" type="double" unit="Pa"/>
+          <parameter value="0.001" name="V#Value" type="double" unit="m^3"/>
+          <parameter value="1e+009" name="Beta_e#Value" type="double" unit="Pa"/>
+          <parameter value="0.1" name="alpha#Value" type="double" unit="-"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerMultiportType" name="P1" nodetype="NodeHydraulic"/>
+          <port name="V" nodetype="NodeSignal"/>
+          <port name="Beta_e" nodetype="NodeSignal"/>
+          <port name="alpha" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2522.972709" y="2397.639186" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Pressure" port="P1" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="255.000000" a="0.000000"/>
+              <color g="0.000000" r="-255.000000" divisor="P_high" idx="0" multiplier="" b="255.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+            <movable idx="1">
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Hydraulic_Volume_Multi_Port_2" typename="HydraulicVolumeMultiPort">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="S" disabled="false" locked="false" subtypename="" typename="HydraulicPressureSensor" name="Pressure_Transducer">
+        <parameters>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="100000" name="P1#Pressure" type="double" unit="Pa"/>
+          <parameter value="293" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="100000" name="P1#WaveVariable" type="double" unit="Pa"/>
+          <parameter value="0" name="P1#CharImpedance" type="double" unit="Pa s/m^3"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+        </parameters>
+        <ports>
+          <port porttype="ReadPortType" name="P1" nodetype="NodeHydraulic"/>
+          <port porttype="WritePortType" name="out" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2465.365089" y="2397.746265" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="out" idx="0"/>
+              <start x="0.000000" y="0.000000" a="-60.000000"/>
+              <movement x="0.000000" divisor="" y="0.000000" idx="0" multiplier="" a="-0.000006"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="18.000000" y="18.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Pressure_Transducer" typename="HydraulicPressureSensor">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="Q" disabled="false" locked="false" subtypename="" typename="Hydraulic43ValveNeutralSupplyToTank" name="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position">
+        <parameters>
+          <parameter value="0" name="xv#Value" type="double" unit=""/>
+          <parameter value="0" name="in#Value" type="double" unit="m"/>
+          <parameter value="0.67" name="C_q#Value" type="double" unit="-"/>
+          <parameter value="870" name="rho#Value" type="double" unit="kg/m^3"/>
+          <parameter value="0.01" name="d#Value" type="double" unit="m"/>
+          <parameter value="0.01" name="x_vmax#Value" type="double" unit="m"/>
+          <parameter value="0.02" name="p_c#Value" type="double" unit="-"/>
+          <parameter value="1" name="f_pa#Value" type="double" unit="-"/>
+          <parameter value="1" name="f_pb#Value" type="double" unit="-"/>
+          <parameter value="1" name="f_at#Value" type="double" unit="-"/>
+          <parameter value="1" name="f_bt#Value" type="double" unit="-"/>
+          <parameter value="0.1" name="f_c#Value" type="double" unit="-"/>
+          <parameter value="-1e-006" name="x_pa#Value" type="double" unit="m"/>
+          <parameter value="-1e-006" name="x_pb#Value" type="double" unit="m"/>
+          <parameter value="-1e-006" name="x_at#Value" type="double" unit="m"/>
+          <parameter value="-1e-006" name="x_bt#Value" type="double" unit="m"/>
+          <parameter value="100" name="omega_h" type="double" unit="rad/s"/>
+          <parameter value="1" name="delta_h" type="double" unit="-"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="PP" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="PT" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="PA" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="PB" nodetype="NodeHydraulic"/>
+          <port porttype="WritePortType" name="xv" nodetype="NodeSignal"/>
+          <port porttype="ReadPortType" name="in" nodetype="NodeSignal"/>
+          <port name="C_q" nodetype="NodeSignal"/>
+          <port name="rho" nodetype="NodeSignal"/>
+          <port name="d" nodetype="NodeSignal"/>
+          <port name="x_vmax" nodetype="NodeSignal"/>
+          <port name="p_c" nodetype="NodeSignal"/>
+          <port name="f_pa" nodetype="NodeSignal"/>
+          <port name="f_pb" nodetype="NodeSignal"/>
+          <port name="f_at" nodetype="NodeSignal"/>
+          <port name="f_bt" nodetype="NodeSignal"/>
+          <port name="f_c" nodetype="NodeSignal"/>
+          <port name="x_pa" nodetype="NodeSignal"/>
+          <port name="x_pb" nodetype="NodeSignal"/>
+          <port name="x_at" nodetype="NodeSignal"/>
+          <port name="x_bt" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2513.336072" y="2307.404665" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="xv" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="-40.000000" divisor="x_vmax#Value" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" typename="Hydraulic43ValveNeutralSupplyToTank">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="HydraulicTankC" name="C_type_Tank_5">
+        <parameters>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="0" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+          <parameter value="100000" name="p" type="double" unit="Pa"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeHydraulic"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2606.852555" y="2589.455922" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="C_type_Tank_5" typename="HydraulicTankC">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="Q" disabled="false" locked="false" subtypename="" typename="HydraulicPressureReliefValve" name="Pressure_Relief_Valve">
+        <parameters>
+          <parameter value="1.8e+007" name="p_max#Value" type="double" unit="Pa"/>
+          <parameter value="0.01" name="tao#Value" type="double" unit="s"/>
+          <parameter value="500000" name="p_h#Value" type="double" unit="Pa"/>
+          <parameter value="1e-008" name="k_cs" type="double" unit="(m^3/s)/Pa"/>
+          <parameter value="1e-008" name="k_cf" type="double" unit="(m^3/s)/Pa"/>
+          <parameter value="0.001" name="q_nom" type="double" unit="m^3/s"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="P2" nodetype="NodeHydraulic"/>
+          <port porttype="WritePortType" name="xv" nodetype="NodeSignal"/>
+          <port name="p_max" nodetype="NodeSignal"/>
+          <port name="tao" nodetype="NodeSignal"/>
+          <port name="p_h" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2608.851755" y="2497.638722" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="xv" idx="0"/>
+              <start x="59.000000" y="32.512000" a="0.000000"/>
+              <movement x="-4600000.000000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <resize x="200000.000000" divisor="" y="0.000000" idx1="0" multiplier="" idx2="-1"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+            <movable idx="1">
+              <data dataname="Value" port="xv" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="-4600000.000000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Pressure_Relief_Valve" typename="HydraulicPressureReliefValve">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="HydraulicCylinderC" name="C_type_Piston">
+        <parameters>
+          <parameter value="true" name="use_sl" type="bool" unit=""/>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="100000" name="P1#Pressure" type="double" unit="Pa"/>
+          <parameter value="293" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="100000" name="P1#WaveVariable" type="double" unit="Pa"/>
+          <parameter value="0" name="P1#CharImpedance" type="double" unit="Pa s/m^3"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+          <parameter value="0" name="P2#Flow" type="double" unit="m^3/s"/>
+          <parameter value="100000" name="P2#Pressure" type="double" unit="Pa"/>
+          <parameter value="293" name="P2#Temperature" type="double" unit="K"/>
+          <parameter value="100000" name="P2#WaveVariable" type="double" unit="Pa"/>
+          <parameter value="0" name="P2#CharImpedance" type="double" unit="Pa s/m^3"/>
+          <parameter value="0" name="P2#HeatFlow" type="double" unit="?"/>
+          <parameter value="0" name="P3#Velocity" type="double" unit="m/s"/>
+          <parameter value="0" name="P3#Force" type="double" unit="N"/>
+          <parameter value="0" name="P3#Position" type="double" unit="m"/>
+          <parameter value="0" name="P3#WaveVariable" type="double" unit="N"/>
+          <parameter value="0" name="P3#CharImpedance" type="double" unit="N s/m"/>
+          <parameter value="1" name="P3#EquivalentMass" type="double" unit="kg"/>
+          <parameter value="0.001" name="A_1#Value" type="double" unit="m^2"/>
+          <parameter value="0.001" name="A_2#Value" type="double" unit="m^2"/>
+          <parameter value="1" name="s_l#Value" type="double" unit="m"/>
+          <parameter value="0.0003" name="V_1#Value" type="double" unit="m^3"/>
+          <parameter value="0.0003" name="V_2#Value" type="double" unit="m^3"/>
+          <parameter value="1000" name="B_p#Value" type="double" unit="Ns/m"/>
+          <parameter value="1e+009" name="Beta_e#Value" type="double" unit="Pa"/>
+          <parameter value="1e-011" name="c_leak#Value" type="double" unit="(m^3/s)/Pa"/>
+          <parameter value="0" name="q_leak#Value" type="double" unit=""/>
+        </parameters>
+        <ports>
+          <port porttype="PowerMultiportType" name="P1" nodetype="NodeHydraulic"/>
+          <port porttype="PowerMultiportType" name="P2" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="P3" nodetype="NodeMechanic"/>
+          <port name="A_1" nodetype="NodeSignal"/>
+          <port name="A_2" nodetype="NodeSignal"/>
+          <port name="s_l" nodetype="NodeSignal"/>
+          <port name="V_1" nodetype="NodeSignal"/>
+          <port name="V_2" nodetype="NodeSignal"/>
+          <port name="B_p" nodetype="NodeSignal"/>
+          <port name="Beta_e" nodetype="NodeSignal"/>
+          <port name="c_leak" nodetype="NodeSignal"/>
+          <port name="q_leak" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2578.889421" y="2192.549508" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Pressure" port="P1" idx="0"/>
+              <start x="1.500000" y="1.500000" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="255.000000" a="0.000000"/>
+              <color g="0.000000" r="-0.000013" divisor="" idx="0" multiplier="" b="0.000013" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+            <movable idx="1">
+              <data dataname="Position" port="P3" idx="0"/>
+              <data dataname="Pressure" port="P2" idx="1"/>
+              <start x="11.000000" y="1.500000" a="0.000000"/>
+              <movement x="77.000000" divisor="s_l#Value" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <resize x="-1.000000" divisor="s_l#Value" y="0.000000" idx1="0" multiplier="" idx2="-1"/>
+              <initcolor g="0.000000" r="0.000000" b="255.000000" a="0.000000"/>
+              <color g="0.000000" r="-0.000013" divisor="" idx="1" multiplier="" b="0.000013" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <relative idx="-1"/>
+            </movable>
+            <movable idx="2">
+              <data dataname="Position" port="P3" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="77.500000" divisor="s_l#Value" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <movingport portname="P3" startx="100.000000" starty="20.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="C_type_Piston" typename="HydraulicCylinderC">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="HydraulicTankC" name="C_type_Tank_4">
+        <parameters>
+          <parameter value="0" name="P1#Flow" type="double" unit="m^3/s"/>
+          <parameter value="0" name="P1#Temperature" type="double" unit="K"/>
+          <parameter value="0" name="P1#HeatFlow" type="double" unit="?"/>
+          <parameter value="100000" name="p" type="double" unit="Pa"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeHydraulic"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2522.464329" y="2591.338831" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0"/>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="C_type_Tank_4" typename="HydraulicTankC">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="C" disabled="false" locked="false" subtypename="" typename="MechanicForceTransformer" name="Force_Source">
+        <parameters>
+          <parameter value="0" name="F#Value" type="double" unit="N"/>
+          <parameter value="0" name="P1#Velocity" type="double" unit="m/s"/>
+          <parameter value="0" name="P1#Position" type="double" unit="m"/>
+          <parameter value="0" name="P1#WaveVariable" type="double" unit="N"/>
+          <parameter value="1" name="P1#EquivalentMass" type="double" unit="kg"/>
+        </parameters>
+        <ports>
+          <port porttype="ReadPortType" name="F" nodetype="NodeSignal"/>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeMechanic"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2804.961444" y="2193.280422" a="0" flipped="true"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Position" port="P1" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="77.500000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <movingport portname="P1" startx="39.566000" starty="6.946000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Force_Source" typename="MechanicForceTransformer">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="Q" disabled="false" locked="false" subtypename="" typename="HydraulicFixedDisplacementPump" name="Q_type_Fixed_Displacement_Pump">
+        <parameters>
+          <parameter value="0" name="a#Value" type="double" unit=""/>
+          <parameter value="250" name="n_p#Value" type="double" unit="rad/s"/>
+          <parameter value="2e-005" name="D_p#Value" type="double" unit="m^3/rev"/>
+          <parameter value="0" name="C_lp#Value" type="double" unit="(m^3/s)/Pa"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeHydraulic"/>
+          <port porttype="PowerPortType" name="P2" nodetype="NodeHydraulic"/>
+          <port porttype="WritePortType" name="a" nodetype="NodeSignal"/>
+          <port name="n_p" nodetype="NodeSignal"/>
+          <port name="D_p" nodetype="NodeSignal"/>
+          <port name="C_lp" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2507.969709" y="2481.470086" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Value" port="a" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="0.000000" divisor="" y="0.000000" idx="0" multiplier="" a="57.295646"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="60.000000" y="50.500000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Q_type_Fixed_Displacement_Pump" typename="HydraulicFixedDisplacementPump">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <component cqstype="Q" disabled="false" locked="false" subtypename="" typename="MechanicTranslationalMass" name="Translational_Mass">
+        <parameters>
+          <parameter value="1" name="m" type="double" unit="kg"/>
+          <parameter value="10" name="B#Value" type="double" unit="Ns/m"/>
+          <parameter value="0" name="k#Value" type="double" unit="N/m"/>
+          <parameter value="0" name="x_min#Value" type="double" unit="m"/>
+          <parameter value="1" name="x_max#Value" type="double" unit="m"/>
+        </parameters>
+        <ports>
+          <port porttype="PowerPortType" name="P1" nodetype="NodeMechanic"/>
+          <port porttype="PowerPortType" name="P2" nodetype="NodeMechanic"/>
+          <port name="B" nodetype="NodeSignal"/>
+          <port name="k" nodetype="NodeSignal"/>
+          <port name="x_min" nodetype="NodeSignal"/>
+          <port name="x_max" nodetype="NodeSignal"/>
+        </ports>
+        <hopsangui alwaysvisible="0">
+          <pose x="2705.274684" y="2193.280422" a="0" flipped="false"/>
+          <nametext visible="0" position="0"/>
+          <animation hydraulicmaxpressure="20000000" flowspeed="100" hydraulicminpressure="0">
+            <movable idx="0">
+              <data dataname="Position" port="P1" idx="0"/>
+              <start x="0.000000" y="0.000000" a="0.000000"/>
+              <movement x="77.500000" divisor="" y="0.000000" idx="0" multiplier="" a="0.000000"/>
+              <initscale x="1.000000" y="1.000000"/>
+              <initcolor g="0.000000" r="0.000000" b="0.000000" a="0.000000"/>
+              <color g="0.000000" r="0.000000" divisor="" idx="0" multiplier="" b="0.000000" a="0.000000"/>
+              <transformorigin x="0.000000" y="0.000000"/>
+              <movingport portname="P1" startx="0.000000" starty="20.000000"/>
+              <movingport portname="P2" startx="65.000000" starty="20.000000"/>
+              <relative idx="-1"/>
+            </movable>
+          </animation>
+          <hopsanobjectappearance version="0.3">
+            <modelobject displayname="Translational_Mass" typename="MechanicTranslationalMass">
+              <ports/>
+            </modelobject>
+          </hopsanobjectappearance>
+        </hopsangui>
+      </component>
+      <textboxwidget>
+        <hopsangui>
+          <pose x="2353.929058" y="1892.978357"/>
+          <textobject fontcolor="#556b2f" font="Calibri,20,-1,5,75,0,0,0,0,0" reflow="0" text="Example: Simple cylinder, two direction valve"/>
+          <size width="517.000000" height="50.424503"/>
+          <line color="#556b2f" visible="0" width="2" style="solidline"/>
+        </hopsangui>
+      </textboxwidget>
+      <textboxwidget>
+        <hopsangui>
+          <pose x="2367.047677" y="1994.579788"/>
+          <textobject fontcolor="#556b2f" font="Calibri,12,-1,0,50,0,0,0,0,0" reflow="1" text="The load and mass that the cylinder is interacting with is needed to run the simulation"/>
+          <size width="632.352884" height="50.255054"/>
+          <line color="#556b2f" visible="1" width="2" style="solidline"/>
+        </hopsangui>
+      </textboxwidget>
+      <textboxwidget>
+        <hopsangui>
+          <pose x="2077.137901" y="2234.480139"/>
+          <textobject fontcolor="#556b2f" font="Calibri,12,-1,0,50,0,0,0,0,0" reflow="1" text="Retract cylinder"/>
+          <size width="204.000000" height="27.000000"/>
+          <line color="#556b2f" visible="0" width="2" style="solidline"/>
+        </hopsangui>
+      </textboxwidget>
+      <textboxwidget>
+        <hopsangui>
+          <pose x="2077.382545" y="2305.151124"/>
+          <textobject fontcolor="#556b2f" font="Calibri,12,-1,0,50,0,0,0,0,0" reflow="1" text="Extend cylinder"/>
+          <size width="208.000000" height="27.000000"/>
+          <line color="#556b2f" visible="0" width="2" style="solidline"/>
+        </hopsangui>
+      </textboxwidget>
+      <textboxwidget>
+        <hopsangui>
+          <pose x="2329.099084" y="2466.721159"/>
+          <textobject fontcolor="#556b2f" font="Calibri,12,-1,0,50,0,0,0,0,0" reflow="1" text="Pump (always on)"/>
+          <size width="214.000000" height="27.000000"/>
+          <line color="#556b2f" visible="0" width="2" style="solidline"/>
+        </hopsangui>
+      </textboxwidget>
+    </objects>
+    <connections>
+      <connect endport="P2" endcomponent="Q_type_Fixed_Displacement_Pump" startcomponent="Hydraulic_Volume_Multi_Port_2" startport="P1">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2522.97270900000012261444" y="2397.63918599999988146010"/>
+            <coordinate x="2522.97270900000012261444" y="2397.63918599999988146010"/>
+            <coordinate x="2522.97270900000012261444" y="2431.47008599999981015571"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="Q_type_Fixed_Displacement_Pump" startcomponent="C_type_Tank_4" startport="P1">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2522.46432899999990695505" y="2576.83883100000002741581"/>
+            <coordinate x="2522.46432899999990695505" y="2551.47008557058597943978"/>
+            <coordinate x="2522.97270900000012261444" y="2551.47008557058597943978"/>
+            <coordinate x="2522.97270900000012261444" y="2531.47008599999981015571"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="Pressure_Relief_Valve" startcomponent="Hydraulic_Volume_Multi_Port_2" startport="P1">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2522.97270900000012261444" y="2397.63918599999988146010"/>
+            <coordinate x="2606.85255499999993844540" y="2397.63918599999988146010"/>
+            <coordinate x="2606.85255499999993844540" y="2457.63872200000014345278"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P2" endcomponent="Pressure_Relief_Valve" startcomponent="C_type_Tank_5" startport="P1">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2606.85255499999993844540" y="2574.95592200000010052463"/>
+            <coordinate x="2606.85255499999993844540" y="2557.63872185327909392072"/>
+            <coordinate x="2606.85255499999993844540" y="2557.63872185327909392072"/>
+            <coordinate x="2606.85255499999993844540" y="2537.63872200000014345278"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="Translational_Mass" startcomponent="C_type_Piston" startport="P3">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2638.38942099999985657632" y="2192.54950800000005983748"/>
+            <coordinate x="2660.37015231050918373512" y="2192.54950800000005983748"/>
+            <coordinate x="2660.37015231050918373512" y="2193.28042199999981676228"/>
+            <coordinate x="2672.77468399999997927807" y="2193.28042199999981676228"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="Force_Source" startcomponent="Translational_Mass" startport="P2">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2737.77468399999997927807" y="2193.28042199999981676228"/>
+            <coordinate x="2814.10665823471799740219" y="2193.28042199999981676228"/>
+            <coordinate x="2814.10665823471799740219" y="2193.28042199999981676228"/>
+            <coordinate x="2785.46144400000002860907" y="2193.28042199999981676228"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="C_type_Piston" startcomponent="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" startport="PA">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2523.25767200000018419814" y="2282.40466500000002270099"/>
+            <coordinate x="2523.25767200000018419814" y="2212.54950800000005983748"/>
+            <coordinate x="2524.36362099999996644328" y="2212.54950800000005983748"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P2" endcomponent="C_type_Piston" startcomponent="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" startport="PB">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2543.30757200000016382546" y="2282.40466500000002270099"/>
+            <coordinate x="2543.30757200000016382546" y="2239.30136492587735119741"/>
+            <coordinate x="2603.95082099999990532524" y="2239.30136492587735119741"/>
+            <coordinate x="2603.95082099999990532524" y="2212.54950800000005983748"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="PP" endcomponent="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" startcomponent="Hydraulic_Volume_Multi_Port_2" startport="P1">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2522.97270900000012261444" y="2397.63918599999988146010"/>
+            <coordinate x="2523.25767200000018419814" y="2397.63918599999988146010"/>
+            <coordinate x="2523.25767200000018419814" y="2332.40466500000002270099"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="C_type_Tank_3" startcomponent="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" startport="PT">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2543.30757200000016382546" y="2332.40466500000002270099"/>
+            <coordinate x="2543.30757200000016382546" y="2351.18535781500531811616"/>
+            <coordinate x="2678.18031199999995806138" y="2351.18535781500531811616"/>
+            <coordinate x="2678.18031199999995806138" y="2577.44354299999986324110"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="in" endcomponent="4_3_Valve_With_Supply_Open_To_Tank_At_Neutral_Position" startcomponent="Subtract" startport="out">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2326.57185630706862866646" y="2317.69510844844171515433"/>
+            <coordinate x="2410.29749129551601072308" y="2317.69510844844171515433"/>
+            <coordinate x="2410.29749129551601072308" y="2317.40466500000002270099"/>
+            <coordinate x="2433.83607200000005832408" y="2317.40466500000002270099"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="in2" endcomponent="Subtract" startcomponent="Retract_cylinder_signal" startport="out">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2248.32764930706889572321" y="2253.10577944844226294663"/>
+            <coordinate x="2314.07185630706862866646" y="2253.10577944844226294663"/>
+            <coordinate x="2314.07185630706862866646" y="2305.19510844844216990168"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="in1" endcomponent="Subtract" startcomponent="Extrend_cylinder_signal" startport="out">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2243.40293430706879007630" y="2317.69510844844171515433"/>
+            <coordinate x="2281.57185611233944655396" y="2317.69510844844171515433"/>
+            <coordinate x="2281.57185611233944655396" y="2317.69510844844171515433"/>
+            <coordinate x="2301.57185630706862866646" y="2317.69510844844171515433"/>
+          </coordinates>
+          <geometries>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+          </geometries>
+          <style>solid</style>
+        </hopsangui>
+      </connect>
+      <connect endport="P1" endcomponent="Pressure_Transducer" startcomponent="Q_type_Fixed_Displacement_Pump" startport="P2">
+        <hopsangui>
+          <coordinates>
+            <coordinate x="2522.97270900000012261444" y="2431.47008599999981015571"/>
+            <coordinate x="2522.97270900000012261444" y="2440.29362528714955260511"/>
+            <coordinate x="2465.13091152778133618995" y="2440.29362528714955260511"/>
+            <coordinate x="2465.13091152778133618995" y="2427.70841994029387933551"/>
+            <coordinate x="2465.36508899999989807839" y="2427.70841994029387933551"/>
+            <coordinate x="2465.36508899999989807839" y="2415.74626500000022133463"/>
+          </coordinates>
+          <geometries>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+            <geometry>vertical</geometry>
+            <geometry>horizontal</geometry>
+          </geometries>
+          <style>dashed</style>
+        </hopsangui>
+      </connect>
+    </connections>
+  </system>
+</hopsanmodelfile>

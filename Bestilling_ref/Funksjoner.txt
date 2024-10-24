@@ -1,0 +1,19 @@
+Ønskeliste:
+
+Primert:
+Frekvensomformer till pumpmotor så vi garantert kjører den riktig vei (3fas-fasrekkefølge).
+Analog styring av frekv omf fra pls (krever anlog out exp.mod) Så vi kan styre hastighet på stempel
+Styre 24V ventilene fra PLS
+Knapper og nødstop
+Alt i ett skap, som er montert på vogn
+Alle signalkabler som går inn og ut av skap går gjennom rekkeklemme med rekkeklemmeliste
+Nettverks-tilkobling til PLS uten å åpne skap.
+Elektrisk koblingsskjema
+Återkobling fra frekvensomformer til PLS om motorens belasting
+Eksempelkode til PLS som demonstrerer anlegg og stopper motoren når stemplene når endeposisjon
+
+Sekundært:
+Noe sensorer som gir återkobling på hvor sylindrene er
+Koble sylindrene mekanisk til noe som kan belastes, OBS! Stor risiko! De er veldig sterke.
+	Mulighet: lage en "benk" som kan "tiltes", jeg har kjøpt vinkelsensorer.
+

@@ -1,0 +1,28 @@
+﻿Connector;Name
+I1;Sylinder 1 in
+I2;Sylinder 1 ut
+I3;Sylinder 3 in
+I4;Sylinder 3 ut
+I5;Sylinder 2 in
+I6;Sylinder 2 ut
+I7;Sylinder 4 in
+I8;Sylinder 4 ut
+I9;Knapp1
+I10;Knapp2
+I11;Knapp3
+I12;Knapp4
+I13;Cap sensor?
+AI1;
+AI2;
+AI3;
+AI4;
+Q1;Sylinder 1 ut
+Q2;Sylinder 1 in
+Q3;Sylinder 2 ut
+Q4;Sylinder 2 in
+Q5;Sylinder 3 ut
+Q6;Sylinder 4 ut
+Q7;Lys1
+Q8;Lys2
+AQ1;
+AQ2;
