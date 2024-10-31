@@ -3,7 +3,7 @@ Plan for oppbygging av Hydraulikk-anlegg
 
 Uke 43:
 lage denne planen 
-tegne pc-schematic for skap
+tegne pc-schematic for skapene
 
 Uke 44:
 velge skap 
